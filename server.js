@@ -12,14 +12,29 @@ const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+// Allow frontend (React at port 5173) to access backend
+app.use(
+  cors({
+    origin: "http://localhost:5173",  // Frontend URL
+    credentials: true,                 // Allow sending cookies/sessions
+  })
+);
+
+// Parse incoming JSON requests
 app.use(bodyParser.json());
+
+// Configure session handling
 app.use(
   session({
-    secret: "your_secret_key",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    secret: "your_secret_key",         // Secret for signing session cookies
+    resave: false,                     // Don't save if nothing changes
+    saveUninitialized: false,          // Don't create empty sessions
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,     // Cookie expiry (1 day)
+      httpOnly: true,                  // Prevent JS from accessing cookie
+      secure: false,                   // ⚠️ true if using HTTPS
+      sameSite: "lax",                 // Helps prevent CSRF
+    },
   })
 );
 
@@ -276,11 +291,50 @@ app.use("/uploads", express.static("uploads"));
 // server.js or routes/vehicles.js
 app.get("/api/vehicles", async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM vehicles"); // MySQL
-    res.json({ vehicles: rows });
+    const [rows] = await db.query("SELECT id, name, type, price_per_day, image_url, description, mileage, fuel_type, seating_capacity, brand, transmission, registration_no FROM vehicles");
+res.json({ vehicles: rows });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
+  }
+});
+
+// ----------------- ORS Distance API Proxy -----------------
+// ----------------- ORS Distance API Proxy -----------------
+app.post("/api/directions", async (req, res) => {
+  try {
+    const { start, end } = req.body;
+
+    console.log("Received coordinates:", start, end);
+
+    if (!start || !end) {
+      return res.status(400).json({ message: "Start and end coordinates required" });
+    }
+
+    const orsRes = await fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
+      method: "POST",
+      headers: {
+        "Authorization": "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjQ5NDVkZWM0NzIxNDBmNzQ4NDJmZGIyYzMyOGYxZTUwNjU5NzBmYTZkY2I5ZGNjM2UyM2ZhMzgwIiwiaCI6Im11cm11cjY0In0=",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        coordinates: [start, end]
+      })
+    });
+
+    const data = await orsRes.json();
+
+    console.log("ORS API Response:", JSON.stringify(data, null, 2));
+
+    if (orsRes.status !== 200) {
+      return res.status(orsRes.status).json({ error: data });
+    }
+
+    res.json(data);
+  } catch (err) {
+    console.error("ORS Proxy Error:", err);
+    res.status(500).json({ message: "Failed to fetch route" });
   }
 });
 
