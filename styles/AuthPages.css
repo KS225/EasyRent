@@ -1,0 +1,111 @@
+/* Container */
+.auth-container {
+  max-width: 420px;
+  margin: 80px auto;
+  background-color: #fff;
+  padding: 35px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Heading */
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e3d59;
+  font-size: 28px;
+}
+
+/* Form Inputs */
+.auth-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.auth-form input:focus {
+  border-color: #1e3d59;
+  box-shadow: 0 0 5px rgba(30,61,89,0.2);
+}
+
+/* Password container with show/hide button */
+.password-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.password-container input {
+  flex: 1;
+}
+
+.show-btn {
+  background-color: #f5c518;
+  color: #1e3d59;
+  padding: 0 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  height: 45px;
+}
+
+.show-btn:hover {
+  background-color: #f5c518;
+}
+
+/* Submit button */
+.auth-form .btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #f5c518;
+  color: #1e3d59;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-form .btn:hover {
+  background-color: #e6b800;
+}
+
+/* Bottom text */
+.auth-container p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.auth-container p a {
+  color: #1e3d59;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.auth-container p a:hover {
+  color: #f5c518;
+}
+
+.form-message {
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.form-message.success {
+  color: green;
+}
+
+.form-message.error {
+  color: red;
+}

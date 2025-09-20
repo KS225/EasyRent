@@ -1,0 +1,95 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+.profile-card {
+  background: #fff;
+  color: #333;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  border: 3px solid #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.profile-form h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.save-btn, .change-btn {
+  background: #4a90e2;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.save-btn:hover, .change-btn:hover {
+  background: #357abd;
+}
+
+.message {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+/* CAPTCHA styles */
+.captcha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.captcha-box {
+  padding: 10px 15px;
+  background: black;
+  color: #ddd;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 4px;
+  text-align: center;
+  user-select: none;
+}

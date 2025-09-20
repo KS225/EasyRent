@@ -1,0 +1,53 @@
+.rent-history {
+  width: 95%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.rent-history h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.rent-history table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rent-history th,
+.rent-history td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.rent-history th {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.rent-history tr {
+    color: #333;
+}
+.rent-history tr:nth-child(even) {
+  background-color: white;
+  color: #333;
+}
+.rent-history tr:nth-child(odd) {
+    background-color: white;
+}
+.rent-history tr:hover {
+  background-color: #d9eaff;
+}
+.action-buttons {
+  display: flex;
+  gap: 8px; /* space between buttons */
+  flex-wrap: wrap; /* wrap if too small */
+}
+
+.feedback-given {
+  color: green;
+  font-weight: bold;
+  align-self: center;
+}
